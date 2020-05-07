@@ -13,11 +13,11 @@ export const getTopics = async () => {
 //     return topics;
 //   });
 
-export const getArticles = async (slug) => {
+export const getArticles = async (slug, sort_by) => {
   const {
     data: { articles },
   } = await axios.get("https://hollands-nc-news.herokuapp.com/api/articles", {
-    params: { topic: slug },
+    params: { topic: slug, sort_by: sort_by },
   });
   return articles;
 };

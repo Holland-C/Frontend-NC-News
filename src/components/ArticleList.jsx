@@ -3,7 +3,7 @@ import ArticleCard from "./ArticleCard";
 import Loader from "./Loader";
 import * as api from "../utils/api";
 import ErrorDisplayer from "./ErrorDisplayer";
-import ArticleSort from "./ArticleSort";
+import ArticleSortForm from "./ArticleSortForm";
 
 class ArticleList extends Component {
   state = {
@@ -17,7 +17,7 @@ class ArticleList extends Component {
     if (err) return <ErrorDisplayer err={err} />;
     return (
       <>
-        <ArticleSort />
+        <ArticleSortForm fetchArticles={this.fetchArticles} />
         <main>
           {articles.map((article) => {
             return <ArticleCard {...article} key={article.article_id} />;
@@ -34,9 +34,9 @@ class ArticleList extends Component {
       this.fetchArticles();
     }
   }
-  fetchArticles = () => {
+  fetchArticles = (sort_by) => {
     api
-      .getArticles(this.props.slug)
+      .getArticles(this.props.slug, sort_by)
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })

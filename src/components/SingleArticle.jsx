@@ -37,8 +37,10 @@ class SingleArticle extends Component {
           Readers have written {comment_count} comments below - Submit your
           comment here:
         </h3>
-        <input></input>
-        <button>Submit</button>
+        <form onSubmit={this.handleCommentSubmission}>
+          <input></input>
+          <button>Submit</button>
+        </form>
         <h3>Comments:</h3>
         <CommentList article_id={article_id} />
       </>
@@ -58,6 +60,10 @@ class SingleArticle extends Component {
         this.setState({ isLoading: false, err: err.response.data.msg });
       });
   };
+
+  // handleCommentSubmission = (event)=>{
+  //   event.preventDefault()
+  // }
 }
 
 export default SingleArticle;
