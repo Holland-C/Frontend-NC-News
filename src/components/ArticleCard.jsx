@@ -1,5 +1,5 @@
 import React from "react";
-import VoteUpdater from "./VoteUpdater";
+import ArticleVoteUpdater from "./VoteUpdaters/ArticleVoteUpdater";
 import { Link } from "@reach/router";
 
 const ArticleCard = ({
@@ -18,7 +18,7 @@ const ArticleCard = ({
         {created_at} by {author}, Comments:
         {comment_count}
       </h4>
-      <VoteUpdater votes={votes} article_id={article_id} />
+      <ArticleVoteUpdater votes={votes} article_id={article_id} />
     </section>
   );
 };

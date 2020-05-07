@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import Loader from "./Loader";
 import * as api from "../utils/api";
-import VoteUpdater from "./VoteUpdater";
+import ArticleVoteUpdater from "./VoteUpdaters/ArticleVoteUpdater";
+import ErrorDisplayer from "./ErrorDisplayer";
+import CommentList from "./CommentList";
 
 class SingleArticle extends Component {
   state = {
     article: {},
     isLoading: true,
+    err: "",
   };
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, err } = this.state;
     if (isLoading) return <Loader />;
+    if (err) return <ErrorDisplayer err={err} />;
     const {
       author,
       comment_count,
@@ -27,7 +31,7 @@ class SingleArticle extends Component {
         <h3>
           Written by {author} at {created_at}
         </h3>
-        <VoteUpdater votes={votes} article_id={article_id} />
+        <ArticleVoteUpdater votes={votes} article_id={article_id} />
         <p>{body}</p>
         <h3>
           Readers have written {comment_count} comments below - Submit your
@@ -35,6 +39,8 @@ class SingleArticle extends Component {
         </h3>
         <input></input>
         <button>Submit</button>
+        <h3>Comments:</h3>
+        <CommentList article_id={article_id} />
       </>
     );
   }
@@ -42,9 +48,15 @@ class SingleArticle extends Component {
     this.fetchSingleArticle();
   }
   fetchSingleArticle = () => {
-    api.getSingleArticle(this.props.article_id).then((article) => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .getSingleArticle(this.props.article_id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch((err) => {
+        console.dir(err);
+        this.setState({ isLoading: false, err: err.response.data.msg });
+      });
   };
 }
 

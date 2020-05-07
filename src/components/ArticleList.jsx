@@ -2,21 +2,28 @@ import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import Loader from "./Loader";
 import * as api from "../utils/api";
+import ErrorDisplayer from "./ErrorDisplayer";
+import ArticleSort from "./ArticleSort";
 
 class ArticleList extends Component {
   state = {
     articles: [],
     isLoading: true,
+    err: "",
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, err } = this.state;
     if (isLoading) return <Loader />;
+    if (err) return <ErrorDisplayer err={err} />;
     return (
-      <main>
-        {articles.map((article) => {
-          return <ArticleCard {...article} key={article.article_id} />;
-        })}
-      </main>
+      <>
+        <ArticleSort />
+        <main>
+          {articles.map((article) => {
+            return <ArticleCard {...article} key={article.article_id} />;
+          })}
+        </main>
+      </>
     );
   }
   componentDidMount() {
@@ -28,9 +35,14 @@ class ArticleList extends Component {
     }
   }
   fetchArticles = () => {
-    api.getArticles(this.props.slug).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
+    api
+      .getArticles(this.props.slug)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch((err) => {
+        this.setState({ isLoading: false, err: err.response.data.msg });
+      });
   };
 }
 
