@@ -28,8 +28,8 @@ class CommentList extends Component {
               comment here:
             </h4>
             <form onSubmit={this.handleCommentSubmission}>
-              <input onChange={this.handleChange}></input>
-              <button>Submit</button>
+              <input onChange={this.handleChange} disabled={true}></input>
+              <button disabled={true}>Submit</button>
             </form>
           </>
           <main>

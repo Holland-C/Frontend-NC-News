@@ -59,3 +59,9 @@ export const postComment = async (article_id, username, body) => {
     { username: username, body: body }
   );
 };
+
+export const deleteComment = async (comment_id) => {
+  return await axios.delete(
+    `https://hollands-nc-news.herokuapp.com/api/comments/${comment_id}`
+  );
+};
