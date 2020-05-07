@@ -24,7 +24,7 @@ class SingleArticle extends Component {
       votes,
       article_id,
     } = this.state.article;
-
+    const { username } = this.props;
     return (
       <>
         <h2>{title}</h2>
@@ -33,16 +33,12 @@ class SingleArticle extends Component {
         </h3>
         <ArticleVoteUpdater votes={votes} article_id={article_id} />
         <p>{body}</p>
-        <h3>
-          Readers have written {comment_count} comments below - Submit your
-          comment here:
-        </h3>
-        <form onSubmit={this.handleCommentSubmission}>
-          <input></input>
-          <button>Submit</button>
-        </form>
-        <h3>Comments:</h3>
-        <CommentList article_id={article_id} />
+
+        <CommentList
+          article_id={article_id}
+          comment_count={comment_count}
+          username={username}
+        />
       </>
     );
   }
@@ -60,10 +56,6 @@ class SingleArticle extends Component {
         this.setState({ isLoading: false, err: err.response.data.msg });
       });
   };
-
-  // handleCommentSubmission = (event)=>{
-  //   event.preventDefault()
-  // }
 }
 
 export default SingleArticle;

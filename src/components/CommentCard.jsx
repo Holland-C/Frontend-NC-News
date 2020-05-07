@@ -1,7 +1,13 @@
 import React from "react";
 import CommentVoteUpdater from "./VoteUpdaters/CommentVoteUpdater";
 
-const CommentCard = ({ author, votes, created_at, body, comment_id }) => {
+const CommentCard = ({
+  author,
+  votes = 0,
+  created_at = new Date().toLocaleString(),
+  body,
+  comment_id,
+}) => {
   return (
     <>
       <h4>{author} :</h4>

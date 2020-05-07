@@ -52,3 +52,10 @@ export const getComments = async (article_id) => {
   );
   return comments;
 };
+
+export const postComment = async (article_id, username, body) => {
+  return await axios.post(
+    `https://hollands-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+    { username: username, body: body }
+  );
+};

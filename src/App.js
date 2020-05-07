@@ -8,17 +8,17 @@ import SingleArticle from "./components/SingleArticle";
 import ErrorDisplayer from "./components/ErrorDisplayer";
 
 class App extends Component {
-  state = { user: "grumpy19" };
+  state = { username: "grumpy19" };
   render() {
-    const { user } = this.state;
+    const { username } = this.state;
     return (
       <div className="App">
-        <Title user={user} />
+        <Title username={username} />
         <NavBar />
         <Router>
           <ArticleList path="/" />
           <ArticleList path="/topics/:slug" />
-          <SingleArticle path="/articles/:article_id" />
+          <SingleArticle path="/articles/:article_id" username={username} />
           <ErrorDisplayer default />
         </Router>
       </div>
