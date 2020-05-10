@@ -6,9 +6,9 @@ class ArticleSortForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSortSubmission}>
+      <form id="sort_by" onSubmit={this.handleSortSubmission}>
         <label form="sort_by">Sort by:</label>
-        <select id="sort_by" onChange={this.handleChange}>
+        <select onChange={this.handleChange}>
           <option value="created_at">Most recent</option>
           <option value="comment_count">Most commented</option>
           <option value="votes">Most votes</option>

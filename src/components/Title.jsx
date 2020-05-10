@@ -1,11 +1,11 @@
 import React from "react";
 
-const Title = ({ user }) => {
+const Title = ({ username }) => {
   return (
     <header className="Header">
       <h1> NC-News</h1>
       <h2> For all your newsy needs!</h2>
-      <h2> You are currently logged in as: {user}</h2>
+      <h2 id="login"> You are currently logged in as: {username}</h2>
     </header>
   );
 };
