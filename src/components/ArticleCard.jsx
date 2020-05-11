@@ -14,10 +14,11 @@ const ArticleCard = ({
     <section className="article">
       <Link to={`/articles/${article_id}`}>{title}</Link>
       <h4>
-        Created at {created_at} by {author}, Comments:
+        Created at {new Date(created_at).toDateString()},{" "}
+        {new Date(created_at).toLocaleTimeString()} by {author}, Comments:
         {comment_count}
-        <ArticleVoteUpdater votes={votes} article_id={article_id} />
       </h4>
+      <ArticleVoteUpdater votes={votes} article_id={article_id} />
     </section>
   );
 };

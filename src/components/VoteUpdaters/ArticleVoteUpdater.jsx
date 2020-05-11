@@ -11,8 +11,8 @@ class ArticleVoteUpdater extends React.Component {
       <h3>
         <button className="styledButton" onClick={() => this.handleClick(1)}>
           &#x2B06;
-        </button>
-        Upvotes: {this.props.votes + this.state.voteDifference}
+        </button>{" "}
+        Upvotes: {this.props.votes + this.state.voteDifference}{" "}
         <button className="styledButton" onClick={() => this.handleClick(-1)}>
           &#x2B07;
         </button>

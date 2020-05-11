@@ -26,20 +26,20 @@ class SingleArticle extends Component {
     } = this.state.article;
     const { username } = this.props;
     return (
-      <>
+      <main className="Article_body">
         <h2>{title}</h2>
         <h3>
           Written by {author} at {created_at}
         </h3>
-        <ArticleVoteUpdater votes={votes} article_id={article_id} />
         <p>{body}</p>
+        <ArticleVoteUpdater votes={votes} article_id={article_id} />
 
         <CommentList
           article_id={article_id}
           comment_count={comment_count}
           username={username}
         />
-      </>
+      </main>
     );
   }
   componentDidMount() {

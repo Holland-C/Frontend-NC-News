@@ -18,7 +18,7 @@ class ArticleList extends Component {
     return (
       <>
         <ArticleSortForm fetchArticles={this.fetchArticles} />
-        <main class="articles">
+        <main className="articles">
           {articles.map((article) => {
             return <ArticleCard {...article} key={article.article_id} />;
           })}
