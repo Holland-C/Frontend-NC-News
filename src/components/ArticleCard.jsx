@@ -1,5 +1,5 @@
 import React from "react";
-import ArticleVoteUpdater from "./VoteUpdaters/ArticleVoteUpdater";
+import VoteUpdater from "./VoteUpdater";
 import { Link } from "@reach/router";
 
 const ArticleCard = ({
@@ -18,7 +18,7 @@ const ArticleCard = ({
         {new Date(created_at).toLocaleTimeString()} by {author}, Comments:
         {comment_count}
       </h4>
-      <ArticleVoteUpdater votes={votes} article_id={article_id} />
+      <VoteUpdater votes={votes} article_id={article_id} />
     </section>
   );
 };

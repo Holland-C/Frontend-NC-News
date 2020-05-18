@@ -1,7 +1,7 @@
 import React from "react";
-import * as api from "../../utils/api";
+import * as api from "../utils/api";
 
-class ArticleVoteUpdater extends React.Component {
+class VoteUpdater extends React.Component {
   state = {
     voteDifference: 0,
     beenClicked: false,
@@ -30,18 +30,25 @@ class ArticleVoteUpdater extends React.Component {
   }
 
   handleClick = (voteChange) => {
-    const { article_id } = this.props;
+    const { comment_id, article_id } = this.props;
     this.setState((currentState) => {
       return {
         voteDifference: currentState.voteDifference + voteChange,
         beenClicked: true,
       };
     });
-    api.updateArticleVotes(article_id, voteChange).catch(() => {
-      this.setState((currentState) => {
-        return { voteDifference: currentState.voteDifference - voteChange };
+    if (comment_id)
+      api.updateCommentVotes(comment_id, voteChange).catch(() => {
+        this.setState((currentState) => {
+          return { voteDifference: currentState.voteDifference - voteChange };
+        });
       });
-    });
+    if (article_id)
+      api.updateArticleVotes(article_id, voteChange).catch(() => {
+        this.setState((currentState) => {
+          return { voteDifference: currentState.voteDifference - voteChange };
+        });
+      });
   };
 }
-export default ArticleVoteUpdater;
+export default VoteUpdater;
