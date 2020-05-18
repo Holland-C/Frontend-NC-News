@@ -92,6 +92,12 @@ h1 {
   position: relative;
   top: 1px;
 }
+.styledButton:disabled {
+  background: linear-gradient(to bottom, #66645a 5%, #88847b 100%);
+  background-color: #2e2d29;
+  color: #1c1c1c;
+  border: 1px solid #1c1c1c;
+}
 
 .article {
   padding: 10px 10px;
