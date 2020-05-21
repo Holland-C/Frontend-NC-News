@@ -43,6 +43,7 @@ h1 {
 
 .articles {
   text-align: left;
+  padding: 0px 80px;
 }
 
 .Nav {
@@ -122,6 +123,7 @@ h1 {
 
 .Article_body {
   color: rgb(65, 71, 71);
+  padding: 0px 80px;
   font-weight: normal;
   font-size: large;
 }

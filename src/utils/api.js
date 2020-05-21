@@ -6,12 +6,6 @@ export const getTopics = async () => {
   );
   return data.topics;
 };
-// none-async/await example of api request below:
-// return axios
-//   .get("https://hollands-nc-news.herokuapp.com/api/topics")
-//   .then(({ data: { topics } }) => {
-//     return topics;
-//   });
 
 export const getArticles = async (slug, sort_by) => {
   const {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Loader from "./Loader";
 import * as api from "../utils/api";
-import ArticleVoteUpdater from "./VoteUpdaters/ArticleVoteUpdater";
+import VoteUpdater from "./VoteUpdater";
 import ErrorDisplayer from "./ErrorDisplayer";
 import CommentList from "./CommentList";
 
@@ -32,7 +32,7 @@ class SingleArticle extends Component {
           Written by {author} at {created_at}
         </h3>
         <p>{body}</p>
-        <ArticleVoteUpdater votes={votes} article_id={article_id} />
+        <VoteUpdater votes={votes} article_id={article_id} />
 
         <CommentList
           article_id={article_id}
